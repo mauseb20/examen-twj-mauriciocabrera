@@ -24,13 +24,13 @@ module.exports = {
 
     tmpElaboracion:{
       type: 'integer',
-      required: true
+      required: true,
     },
 
     urlFoto:{
       type: 'string',
       required: true,
-      size: 1000
+      size: 300
     },
 
     PasteleriaPrepara:{

@@ -7,7 +7,6 @@
     </button>
   </div>
   <div class="row" [hidden]="!mostrarCrear">
-    <!--<form class="animated bounceIn" (ngSubmit)="crearTienda(NuevaTiendaForm)" #NuevaTiendaForm="ngForm">-->
     <form class="form-horizontal animated fadeInDown" (ngSubmit)="crearPasteleria(NuevaPasteleriaForm)" #NuevaPasteleriaForm="ngForm">
       <div class="form-group">
         <br>
@@ -59,15 +58,12 @@
           </div>
         </div>
       </div>
-      <!--<button [disabled]="disabledButtons.NuevaTiendaFormSubmitButton||!NuevaTiendaForm.valid" type="submit"-->
-      <!--class="btn btn-block btn-success">Crear-->
-      <!--</button>-->
     </form>
   </div>
 </div>
 <div class="container" [hidden]="mostrarCrear">
   <br>
-  <div class="col-sm-6 animated zoomIn" align="center" *ngFor="let pasteleria of pastelerias">
+  <div class="col-sm-4 animated zoomIn" align="center" *ngFor="let pasteleria of pastelerias">
     <div class="panel panel-info">
       <div class="panel-heading">
         <h2 class="panel-title">{{pasteleria.nombrePasteleria}}</h2>
@@ -82,7 +78,7 @@
           <button data-toggle="tooltip" title="Eliminar Pasteleria" role="button" class="btn btn-default" (click)="borrarPasteleria(pasteleria.idPasteleria)"><span class="glyphicon glyphicon-remove"></span></button>
           <a [routerLink]="[pasteleria.idPasteleria,'pastel']" data-toggle="tooltip" title="Listar Pasteles" type="button" role="button" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></a>
         </div>
-        <div class="row" [hidden]="pasteleria.mostrarEditar">
+        <div class="row" [hidden]="!pasteleria.mostrarEditar">
           <form class="form-horizontal animated fadeInDown" (ngSubmit)="editarPasteleria(pasteleria)" #NuevaPasteleriaForm="ngForm">
             <div class="form-group">
               <br>

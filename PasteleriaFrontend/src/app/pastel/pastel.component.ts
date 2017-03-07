@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import {MasterUrlService} from "../services/master-url.service";
 import {NgForm} from "@angular/forms";
 
 @Component({
-  selector: 'app-producto',
-  templateUrl: './producto.component.html',
-  styleUrls: ['./producto.component.css']
+  selector: 'app-pastel',
+  templateUrl: './pastel.component.html',
+  styleUrls: ['./pastel.component.css']
 })
 export class PastelComponent implements OnInit {
+  title='Pasteles';
   private _parametros:any;
   pasteles=[];
   nuevoPastel={};
-  pastelerias=[];
   disableButtons ={
-    NuevaPasteleriaFormSubmitButton: false
+    NuevoPastelFormSubmitButton: false
   };
   mostrarCrear=false;
   constructor(private _ActivatedRoute: ActivatedRoute,
               private _http:Http,
               private _masterURL:MasterUrlService) { }
-
   ngOnInit() {
     this._ActivatedRoute.params.subscribe(parametros=>{
       this._parametros=parametros;
-      this._http.get(this._masterURL.url+'Patel?PasteleriaPrepara='+this._parametros.idPasteleria).subscribe(
+      this._http.get(this._masterURL.url+'Pastel?PasteleriaPrepara='+this._parametros.idPasteleria).subscribe(
         (res)=>{
-          this.pasteles=res.json();
+          this.pasteles=res.json().map((value)=>{
+            value.mostrarEditar=false;
+            return value;
+          });
         },
         (error)=>{
           console.log(error);
@@ -35,22 +37,22 @@ export class PastelComponent implements OnInit {
       )
     })
   }
-  crearPastel (formulario:NgForm){
+  crearPastel (formulario: NgForm){
     this.disableButtons.NuevoPastelFormSubmitButton = true;
     this._http.post(this._masterURL.url+"Pastel",{
-      nombrePasteleria:formulario.value.nombrePasteleria,
-      ciudad:formulario.value.ciudad,
-      correo:formulario.value.correo,
-      urlLogo:formulario.value.urlLogo
+      nombrePastel:formulario.value.nombrePastel,
+      tmpElaboracion:formulario.value.tmpElaboracion,
+      urlFoto:formulario.value.urlFoto,
+      PasteleriaPrepara:this._parametros.idPasteleria
     }).subscribe(
       (res)=>{
-        this.pastelerias.push(res.json());
-        this.nuevaPasteleria = {};
-        this.disableButtons.NuevaPasteleriaFormSubmitButton=false;
+        this.pasteles.push(res.json());
+        this.nuevoPastel = {};
+        this.disableButtons.NuevoPastelFormSubmitButton=false;
         this.mostrarCrear=false;
       },
       (error)=>{
-        this.disableButtons.NuevaPasteleriaFormSubmitButton=false;
+        this.disableButtons.NuevoPastelFormSubmitButton=false;
         console.log("Ocurrio un error", error);
       },
       ()=>{
@@ -59,24 +61,24 @@ export class PastelComponent implements OnInit {
     )
   }
 
-  borrarPasteleria(idPasteleria: number) {
-    this._http.delete(this._masterURL.url + "Pasteleria/" +idPasteleria).subscribe(
+  borrarPastel(idPastel: number) {
+    this._http.delete(this._masterURL.url + "Pastel/" +idPastel).subscribe(
       (res)=>{
-        let pasteleriaBorrada = res.json();
-        this.pastelerias=this.pastelerias.filter(value=>pasteleriaBorrada.idPasteleria!=value.idPasteleria)
+        let pastelBorrado = res.json();
+        this.pasteles=this.pasteles.filter(value=>pastelBorrado.idPastel!=value.idPastel)
       }
     )
   }
-  editarPasteleria(pasteleria: any){
+  editarPastel(pastel: any){
     let parametros={
-      nombrePasteleria:pasteleria.nombrePasteleria,
-      ciudad:pasteleria.ciudad,
-      correo:pasteleria.correo,
-      urlLogo:pasteleria.urlLogo
+      nombrePast:pastel.nombrePastel,
+      tmpElaboracion:pastel.tmpElaboracion,
+      urlFoto:pastel.urlFoto,
+      PasteleriaPrepara:this._parametros.idPasteleria
     };
-    this._http.put(this._masterURL.url+"Pasteleria/"+pasteleria.idPasteleria,parametros).subscribe(
+    this._http.put(this._masterURL.url+"Pastel/"+pastel.idPastel,parametros).subscribe(
       (res:Response)=>{
-        pasteleria.mostrarEditar=!pasteleria.mostrarEditar;
+        pastel.mostrarEditar=!pastel.mostrarEditar;
         console.log("Respuesta",res.json());
       },
       (error)=>{

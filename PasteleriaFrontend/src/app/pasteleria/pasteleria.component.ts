@@ -24,7 +24,7 @@ export class PasteleriaComponent implements OnInit {
     this._http.get(this._masterURL.url+"Pasteleria").subscribe(
       (res: Response)=>{
         this.pastelerias = res.json().map((value)=>{
-          value.mostrarEditar=true;
+          value.mostrarEditar=false;
           return value;
         })
       },
