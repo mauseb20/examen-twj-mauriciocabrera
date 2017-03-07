@@ -30,7 +30,7 @@ module.exports = {
     urlFoto:{
       type: 'string',
       required: true,
-      size: 300
+      size: 1000
     },
 
     PasteleriaPrepara:{

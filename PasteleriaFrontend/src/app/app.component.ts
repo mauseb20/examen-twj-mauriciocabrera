@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Http, Response} from "@angular/http";
+import {MasterUrlService} from "./services/master-url.service";
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor(private _http: Http, private _masterURL: MasterUrlService) {
+    console.log("Inicio el constructor");
+  }
+  ngOnInit() {
+  }
 }

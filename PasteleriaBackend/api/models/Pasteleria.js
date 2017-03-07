@@ -29,6 +29,11 @@ module.exports = {
       required: true,
       size: 100
     },
+    urlLogo:{
+      type: 'string',
+      required: true,
+      size: 1000
+    },
     Pasteles:{
       collection: 'Pastel',
       via: 'PasteleriaPrepara'
