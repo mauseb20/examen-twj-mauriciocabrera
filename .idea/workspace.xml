@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0207fe1f-9ff6-4036-aeb6-e3a24422e6dc" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/images/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/js/dependencies/sails.io.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/robots.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/styles/importer.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/PasteleriaBackend/assets/templates/.gitkeep" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -195,15 +189,15 @@
       <updated>1488690710704</updated>
       <workItem from="1488690717898" duration="37000" />
       <workItem from="1488690867458" duration="106000" />
-      <workItem from="1488691545368" duration="41777000" />
+      <workItem from="1488691545368" duration="41844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41920000" />
+    <option name="totallyTimeSpent" value="41987000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
