@@ -10,9 +10,8 @@ import {PastelComponent} from "./pastel/pastel.component";
 export const routes: Routes =[
   {path: '', redirectTo: 'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'pasteleria', component:PasteleriaComponent},//tienda/:idTienda/Productos
-  //{path: 'tienda/:idTienda/producto', component:ProductoComponent}
-  {path: 'pastel', component:PastelComponent}
+  {path: 'pasteleria', component:PasteleriaComponent},
+  {path: 'pasteleria/:idPasteleria/pastel', component:PastelComponent}
 ];
 
 export const routing:ModuleWithProviders=RouterModule.forRoot(routes);

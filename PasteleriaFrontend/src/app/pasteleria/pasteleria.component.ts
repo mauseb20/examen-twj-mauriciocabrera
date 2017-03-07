@@ -24,7 +24,7 @@ export class PasteleriaComponent implements OnInit {
     this._http.get(this._masterURL.url+"Pasteleria").subscribe(
       (res: Response)=>{
         this.pastelerias = res.json().map((value)=>{
-          value.formularioCerrado=true;
+          value.mostrarEditar=true;
           return value;
         })
       },
@@ -45,6 +45,7 @@ export class PasteleriaComponent implements OnInit {
         this.pastelerias.push(res.json());
         this.nuevaPasteleria = {};
         this.disableButtons.NuevaPasteleriaFormSubmitButton=false;
+        this.mostrarCrear=false;
       },
       (error)=>{
         this.disableButtons.NuevaPasteleriaFormSubmitButton=false;
@@ -52,6 +53,32 @@ export class PasteleriaComponent implements OnInit {
       },
       ()=>{
         console.log("Termino la funcion vamos a la casa");
+      }
+    )
+  }
+
+  borrarPasteleria(idPasteleria: number) {
+    this._http.delete(this._masterURL.url + "Pasteleria/" +idPasteleria).subscribe(
+      (res)=>{
+        let pasteleriaBorrada = res.json();
+        this.pastelerias=this.pastelerias.filter(value=>pasteleriaBorrada.idPasteleria!=value.idPasteleria)
+      }
+    )
+  }
+  editarPasteleria(pasteleria: any){
+    let parametros={
+      nombrePasteleria:pasteleria.nombrePasteleria,
+      ciudad:pasteleria.ciudad,
+      correo:pasteleria.correo,
+      urlLogo:pasteleria.urlLogo
+    };
+    this._http.put(this._masterURL.url+"Pasteleria/"+pasteleria.idPasteleria,parametros).subscribe(
+      (res:Response)=>{
+        pasteleria.mostrarEditar=!pasteleria.mostrarEditar;
+        console.log("Respuesta",res.json());
+      },
+      (error)=>{
+        console.log("Error",error)
       }
     )
   }
